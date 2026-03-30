@@ -1,0 +1,54 @@
+open terminal
+cd Frontend
+
+npm create vite@latest
+-Generates a ready-to-use project folder
+
+name the project: "job-portal"
+select a framework: "React"
+select a variant: "Javascript"
+
+cd job-portal
+npm install (this installs all required dependencies)
+npm run dev
+
+npm install react-router-dom react-hot-toast axios framer-motion lucide-react moment
+
+What each package does?
+
+1. react-router-dom
+   Handles navigation between pages in a React app
+   Lets you create routes like /home, /about
+
+👉 Example use:
+
+<Route path="/about" element={<About />} /> 2. react-hot-toast
+Shows popup notifications (success, error, etc.)
+
+👉 Example:
+
+toast.success("Saved successfully!"); 3. axios
+Used to make API requests (fetch data from servers)
+
+👉 Example:
+
+axios.get("/api/users") 4. framer-motion
+Adds smooth animations to your UI
+
+👉 Example:
+
+<motion.div animate={{ opacity: 1 }} /> 5. lucide-react
+Provides clean, modern icons for your app
+
+👉 Example:
+
+<Camera />
+6. moment
+Works with dates and time (formatting, parsing)
+
+👉 Example:
+
+moment().format("YYYY-MM-DD")
+
+
+npm run dev
