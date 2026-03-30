@@ -52,3 +52,23 @@ moment().format("YYYY-MM-DD")
 
 
 npm run dev
+
+
+npm install tailwindcss @tailwindcss/vite
+
+update vite.config.js as below:
+
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from "@tailwindcss/vite";
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react(), tailwindcss()],
+  
+});
+
+replace index.css code with:
+@import "tailwindcss";
+
+delete App.css
