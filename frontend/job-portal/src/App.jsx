@@ -31,7 +31,7 @@ const App = () => {
         <Routes>
           /*public routes*/
           <Route path="/" element={<LandingPage />} />
-          <Route path="/SignUp" element={<SignUp />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/find-jobs" element={<JobSeekerDashboard />} />
           <Route path="/job/:id" element={<JobDetails />} />
