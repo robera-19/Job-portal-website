@@ -1,0 +1,69 @@
+
+
+npm init -y
+ is a quick way to set up a new Node.js project
+
+
+npm i express bycrptjs cors dotenv jsonwebtoken mongoose multer
+
+1. Express.js (express)
+
+This is the backbone of your server.
+
+Helps you create APIs and handle routes (like /login, /users)
+Manages requests and responses
+Makes building a backend much simpler than using raw Node.js
+
+👉 Think of it as the “server engine”
+
+2. bcryptjs (bcryptjs)
+
+Used for password security.
+
+Hashes passwords before storing them
+Lets you compare login passwords safely
+
+👉 Never store plain passwords — this handles that
+
+3. CORS (cors)
+
+Controls who can access your API.
+
+Allows frontend apps (like React) to call your backend
+Prevents browser security errors
+
+👉 Without this, your frontend might get blocked
+
+4. dotenv (dotenv)
+
+Manages environment variables.
+
+Loads variables from a .env file
+Keeps secrets (like DB URLs, API keys) out of your code
+
+👉 Example: process.env.JWT_SECRET
+
+5. JSON Web Token (jsonwebtoken)
+
+Handles authentication using tokens.
+
+Creates tokens when users log in
+Verifies tokens for protected routes
+
+👉 This is how you keep users logged in securely
+
+6. Mongoose (mongoose)
+
+Works with MongoDB.
+
+Defines schemas (structure of your data)
+Makes database operations easier (CRUD)
+
+👉 Instead of raw queries, you use models
+
+7. Multer (multer)
+
+Handles file uploads.
+
+Lets users upload images, PDFs, etc.
+Processes multipart/form-data
