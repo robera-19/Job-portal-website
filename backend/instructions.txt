@@ -67,3 +67,20 @@ Handles file uploads.
 
 Lets users upload images, PDFs, etc.
 Processes multipart/form-data
+
+
+
+npm i nodemon --save-dev
+
+What Nodemon is for
+It automatically restarts your server when you make changes to your code.
+
+Why --save-dev?
+It means:
+This package is only needed during development
+Not required in production
+
+So it goes here:
+"devDependencies": {
+  "nodemon": "^x.x.x"
+}
