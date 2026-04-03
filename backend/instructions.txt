@@ -84,3 +84,8 @@ So it goes here:
 "devDependencies": {
   "nodemon": "^x.x.x"
 }
+
+
+to get JWT_SECRET run below command:
+
+node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
