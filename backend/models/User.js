@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  role: { type: String, enum: ["user", "employer"], default: "user" },
+  role: { type: String, enum: ["jobseeker", "employer"], required: true },
   avatar: { type: String, default: "" },
   companyName: { type: String, default: "" },
   companyDescription: { type: String, default: "" },
@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
 
 // Encrypt password before save
 userSchema.pre("save", async function () {
-    if (!this.isModified("password")) {
+    if (this.isModified("password")) {
     this.password = await bcrypt.hash(this.password, 10);
     }
 });
