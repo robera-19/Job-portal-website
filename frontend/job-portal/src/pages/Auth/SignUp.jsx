@@ -16,8 +16,13 @@ import {
 import { validateEmail } from "../../utils/helper";
 import { validatePassword } from "../../utils/helper";
 import { validateAvatar } from "../../utils/helper";
+import axiosInstance from "../../utils/axiosInstance";
+import { API_PATHS } from "../../utils/apiPaths";
+import uploadImage from "../../utils/uploadImage";
+import { useAuth } from "../../context/AuthContext";
 
 const SignUp = () => {
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -115,6 +120,41 @@ const SignUp = () => {
     setFormState((prev) => ({ ...prev, loading: true }));
 
     try {
+      let avatarUrl = "";
+
+      // Upload image if present
+      if (formData.avatar) {
+        const imgUploadRes = await uploadImage(formData.avatar);
+        avatarUrl = imgUploadRes.imageUrl || "";
+      }
+
+      const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER, {
+        name: formData.fullName,
+        email: formData.email,
+        password: formData.password,
+        role: formData.role,
+        avatar: avatarUrl || "",
+      });
+
+      // Handle successful registration
+      setFormState((prev) => ({
+        ...prev,
+        loading: false,
+        success: true,
+        errors: {},
+      }));
+
+      const { token, role } = response.data;
+
+      if (token) {
+        login(response.data, token);
+
+        //Redirect based on role
+        setTimeout(() => {
+          window.location.href =
+            role === "employer" ? "/employer-dashboard" : "/find-jobs";
+        }, 2000);
+      }
     } catch (error) {
       console.log("error", error);
 
@@ -321,8 +361,8 @@ const SignUp = () => {
             <div className="grid grid-cols-2 gap-4">
               <button
                 type="button"
-                onClick={() => handleRoleChange("jobSeeker")}
-                className={`p-4 rounded-lg border-2 transition-all ${formData.role === "jobSeeker" ? "border-blue-500 bg-blue-50 text-blue-700" : "border-gray-200 hover:border-blue-300"}`}
+                onClick={() => handleRoleChange("jobseeker")}
+                className={`p-4 rounded-lg border-2 transition-all ${formData.role === "jobseeker" ? "border-blue-500 bg-blue-50 text-blue-700" : "border-gray-200 hover:border-blue-300"}`}
               >
                 <UserCheck className="w-8 h-8 mx-auto mb-3" />
                 <div className="font-medium">Job Seeker</div>
