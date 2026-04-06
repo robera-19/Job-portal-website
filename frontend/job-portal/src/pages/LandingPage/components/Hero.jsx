@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
 import { Search, ArrowRight, Building2, TrendingUp, Users } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../context/AuthContext";
+
 const Hero = () => {
-  const isAuthenticated = true; // Replace with actual authentication logic
-  const user = { name: "Roba", role: "jobseeker" }; // Replace with actual user data
+  const { user, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   const stats = [
@@ -91,8 +92,12 @@ const Hero = () => {
                 <div className="w-12 h-12 bg-gradient-to-r from-blue-100 to-purple-100 flex items-center justify-center rounded-xl mb-2">
                   <stat.icon className="w-6 h-6 text-blue-600" />
                 </div>
-                <div className="font-bold text-2xl text-gray-900">{stat.value}</div>
-                <div className="text-gray-600 text-sm font-medium">{stat.label}</div>
+                <div className="font-bold text-2xl text-gray-900">
+                  {stat.value}
+                </div>
+                <div className="text-gray-600 text-sm font-medium">
+                  {stat.label}
+                </div>
               </motion.div>
             ))}
           </motion.div>
