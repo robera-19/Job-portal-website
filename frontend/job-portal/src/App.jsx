@@ -23,10 +23,11 @@ import ApplicantsViewer from "./pages/Employer/ApplicationViewer";
 import EmployerProfilePage from "./pages/Employer/EmployerProfilePage";
 
 import ProtectedRoute from "./routes/ProtectedRoute";
+import { AuthProvider } from "./context/AuthContext";
 
 const App = () => {
   return (
-    <div>
+    <AuthProvider>
       <Router>
         <Routes>
           /*public routes*/
@@ -61,7 +62,7 @@ const App = () => {
           },
         }}
       />
-    </div>
+    </AuthProvider>
   );
 };
 
