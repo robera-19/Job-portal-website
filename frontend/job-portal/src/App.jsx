@@ -41,8 +41,8 @@ const App = () => {
           /*private routes*/
           <Route element={<ProtectedRoute requiredRole="employer" />}>
             <Route path="/employer-dashboard" element={<EmployerDashboard />} />
-            <Route path="/employer/post-job" element={<PostJob />} />
-            <Route path="/employer/manage-jobs" element={<ManageJobs />} />
+            <Route path="/post-job" element={<PostJob />} />
+            <Route path="/manage-jobs" element={<ManageJobs />} />
             <Route
               path="/employer/applicants/:jobId"
               element={<ApplicantsViewer />}
