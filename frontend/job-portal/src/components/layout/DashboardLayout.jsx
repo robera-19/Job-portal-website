@@ -3,6 +3,7 @@ import { Briefcase, Building2, LogOut, Menu, X } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { NAVIGATION_MENU } from "../../utils/data";
+import ProfileDropdown from "./ProfileDropdown";
 
 const NavigationItem = ({ item, isActive, onClick, isCollapsed }) => {
   const Icon = item.icon;
@@ -148,19 +149,15 @@ const DashboardLayout = ({ activeMenu, children }) => {
         }`}
       >
         {/*top nav bar*/}
-        <header className="border-b border-gray-200 bg-white/80 h-16 px-6 flex items-center justify-between sticky top-0 z-30">
+        <header className="border-b border-gray-200 bg-white/80 h-16 px-6 flex items-center justify-between sticky top-0 z-20">
+          {/* LEFT SIDE - Menu button and welcome text */}
           <div className="flex items-center space-x-4">
             {isMobile && (
               <button
-                type="button"
                 onClick={toggleSidebar}
                 className="p-2 rounded-lg bg-gray-100 transition-colors duration-200"
               >
-                {sidebarOpen ? (
-                  <X className="h-5 w-5 text-gray-600" />
-                ) : (
-                  <Menu className="h-5 w-5 text-gray-600" />
-                )}
+                <Menu className="h-5 w-5 text-gray-600" />
               </button>
             )}
             <div>
@@ -171,24 +168,22 @@ const DashboardLayout = ({ activeMenu, children }) => {
                 Here's what's happening with your jobs today.
               </p>
             </div>
+          </div>
 
-            <div className="flex items-center space-x-3">
-              /* Profile dropdown */ 
-              <ProfileDropdown isOpen=
-              {profileDropdownOpen}
-              onToggle=
-              {(e) => {
+          {/* RIGHT SIDE - Profile Dropdown */}
+          <div className="flex items-center space-x-3">
+            <ProfileDropdown
+              isOpen={profileDropdownOpen}
+              onToggle={(e) => {
                 e.stopPropagation();
                 setProfileDropdownOpen(!profileDropdownOpen);
               }}
               avatar={user?.avatar || ""}
-              companyName={user?.name || ""}
+              companyName={user?.companyName || user?.name || ""}
               email={user?.email || ""}
               onLogout={logout}
-              />
-
-              
-            </div>
+              userRole={user?.role || "employer"}
+            />
           </div>
         </header>
 
