@@ -3,10 +3,9 @@ import {
   Routes,
   Route,
   Navigate,
-}
-from "react-router-dom";
+} from "react-router-dom";
 
-import {Toaster} from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 
 import LandingPage from "./pages/LandingPage/LandingPage";
 import SignUp from "./pages/Auth/SignUp";
@@ -35,7 +34,7 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/find-jobs" element={<JobSeekerDashboard />} />
-          <Route path="/job/:id" element={<JobDetails />} />
+          <Route path="/job/:jobId" element={<JobDetails />} />
           <Route path="/saved-jobs" element={<SavedJobs />} />
           <Route path="/profile" element={<Profile />} />
           /*private routes*/
@@ -43,10 +42,7 @@ const App = () => {
             <Route path="/employer-dashboard" element={<EmployerDashboard />} />
             <Route path="/post-job" element={<PostJob />} />
             <Route path="/manage-jobs" element={<ManageJobs />} />
-            <Route
-              path="/employer/applicants/:jobId"
-              element={<ApplicantsViewer />}
-            />
+            <Route path="/applicants" element={<ApplicantsViewer />} />
             <Route path="/company-profile" element={<EmployerProfilePage />} />
           </Route>
           /*catch all route*/
